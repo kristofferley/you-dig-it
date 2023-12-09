@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreTrackerScript : MonoBehaviour
+public class ShowScore : MonoBehaviour
 {
     void Start()
     {
