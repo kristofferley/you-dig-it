@@ -12,9 +12,10 @@ public class GridCreatorScript : MonoBehaviour
     public GameObject blueGem;
     public GameObject greenGem;
     public GameObject fuel;
-    private float yStartCoord = -2.0f;
-    private float xStartCoord = -7.5f;    
-    private int gridWidth = 13;
+
+    public float yStartCoord;
+    public float xStartCoord;    
+    public int gridWidth;
     public int gridHeight;
     public int numStones;
     public int numGold;
@@ -34,7 +35,7 @@ public class GridCreatorScript : MonoBehaviour
 
         for (int xPos = 0; xPos < gridWidth; xPos++)
         {
-            float xCoord = xStartCoord + 1.25f * xPos;
+            float xCoord = xStartCoord + xPos;
             Vector3 position = new(xCoord, yStartCoord, 0);
             Instantiate(grass, position, Quaternion.identity);
             hasTile[0][xPos] = true;
@@ -42,8 +43,8 @@ public class GridCreatorScript : MonoBehaviour
 
         for (int xPos = 0; xPos < gridWidth; xPos++)
         {
-            float yCoord = yStartCoord - 1.25f * (gridHeight - 1);
-            float xCoord = xStartCoord + 1.25f * xPos;
+            float yCoord = yStartCoord - (gridHeight - 1);
+            float xCoord = xStartCoord + xPos;
             Vector3 position = new(xCoord, yCoord, 0);
             Instantiate(stone, position, Quaternion.identity);
             hasTile[gridHeight - 1][xPos] = true;
@@ -56,8 +57,8 @@ public class GridCreatorScript : MonoBehaviour
             int yRandom = Random.Range(1, gridHeight - 1);
             if (!hasTile[yRandom][xRandom])
             {
-                float xCoord = xStartCoord + 1.25f * xRandom;
-                float yCoord = yStartCoord - 1.25f * yRandom;                
+                float xCoord = xStartCoord + xRandom;
+                float yCoord = yStartCoord - yRandom;                
                 Vector3 position = new(xCoord, yCoord, 0);
                 Instantiate(stone, position, Quaternion.identity);
                 hasTile[yRandom][xRandom] = true;
@@ -72,8 +73,8 @@ public class GridCreatorScript : MonoBehaviour
             int yRandom = Random.Range(1, gridHeight - 1);            
             if (!hasTile[yRandom][xRandom])
             {
-                float xCoord = xStartCoord + 1.25f * xRandom;
-                float yCoord = yStartCoord - 1.25f * yRandom;                
+                float xCoord = xStartCoord + xRandom;
+                float yCoord = yStartCoord - yRandom;                
                 Vector3 position = new(xCoord, yCoord, 0);
                 Instantiate(dirt, position, Quaternion.identity);
                 Instantiate(gold, position, Quaternion.identity);
@@ -89,8 +90,8 @@ public class GridCreatorScript : MonoBehaviour
             int yRandom = Random.Range(1, gridHeight - 1);            
             if (!hasTile[yRandom][xRandom])
             {
-                float xCoord = xStartCoord + 1.25f * xRandom;
-                float yCoord = yStartCoord - 1.25f * yRandom;                
+                float xCoord = xStartCoord + xRandom;
+                float yCoord = yStartCoord - yRandom;                
                 Vector3 position = new(xCoord, yCoord, 0);
                 Instantiate(dirt, position, Quaternion.identity);
                 Instantiate(fuel, position, Quaternion.identity);
@@ -106,8 +107,8 @@ public class GridCreatorScript : MonoBehaviour
             int yRandom = Random.Range(1, gridHeight - 1);            
             if (!hasTile[yRandom][xRandom])
             {
-                float xCoord = xStartCoord + 1.25f * xRandom;
-                float yCoord = yStartCoord - 1.25f * yRandom;                
+                float xCoord = xStartCoord + xRandom;
+                float yCoord = yStartCoord - yRandom;                
                 Vector3 position = new(xCoord, yCoord, 0);
                 Instantiate(dirt, position, Quaternion.identity);
                 Instantiate(purpleGem, position, Quaternion.identity);
@@ -123,8 +124,8 @@ public class GridCreatorScript : MonoBehaviour
             int yRandom = Random.Range(1, gridHeight - 1);            
             if (!hasTile[yRandom][xRandom])
             {
-                float xCoord = xStartCoord + 1.25f * xRandom;
-                float yCoord = yStartCoord - 1.25f * yRandom;                
+                float xCoord = xStartCoord + xRandom;
+                float yCoord = yStartCoord - yRandom;                
                 Vector3 position = new(xCoord, yCoord, 0);
                 Instantiate(dirt, position, Quaternion.identity);
                 Instantiate(blueGem, position, Quaternion.identity);
@@ -140,8 +141,8 @@ public class GridCreatorScript : MonoBehaviour
             int yRandom = Random.Range(1, gridHeight - 1);            
             if (!hasTile[yRandom][xRandom])
             {
-                float xCoord = xStartCoord + 1.25f * xRandom;
-                float yCoord = yStartCoord - 1.25f * yRandom;                
+                float xCoord = xStartCoord + xRandom;
+                float yCoord = yStartCoord - yRandom;                
                 Vector3 position = new(xCoord, yCoord, 0);
                 Instantiate(dirt, position, Quaternion.identity);
                 Instantiate(greenGem, position, Quaternion.identity);
@@ -157,8 +158,8 @@ public class GridCreatorScript : MonoBehaviour
             {
                 if (!hasTile[yPos][xPos])
                 {
-                    float xCoord = xStartCoord + 1.25f * xPos;
-                    float yCoord = yStartCoord - 1.25f * yPos;                    
+                    float xCoord = xStartCoord + xPos;
+                    float yCoord = yStartCoord - yPos;                    
                     Vector3 position = new(xCoord, yCoord, 0);
                     Instantiate(dirt, position, Quaternion.identity);
                 }
