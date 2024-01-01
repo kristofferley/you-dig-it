@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GridCreatorScript : MonoBehaviour
 {
-    public GameObject dirt;
     public GameObject grass;
+    public GameObject dirt;
     public GameObject stone;
-    public GameObject gold;
-    public GameObject purpleGem;
-    public GameObject blueGem;
-    public GameObject greenGem;
     public GameObject fuel;
+    public GameObject gold;
+    public GameObject purpleGem;    
+    public GameObject greenGem;
+    public GameObject blueGem;  
 
     public float yStartCoord;
     public float xStartCoord;    
@@ -115,24 +115,7 @@ public class GridCreatorScript : MonoBehaviour
                 hasTile[yRandom][xRandom] = true;
                 break;
             }
-        }
-
-        //Place blueGem
-        while (true)
-        {
-            int xRandom = Random.Range(0, gridWidth);
-            int yRandom = Random.Range(1, gridHeight - 1);            
-            if (!hasTile[yRandom][xRandom])
-            {
-                float xCoord = xStartCoord + xRandom;
-                float yCoord = yStartCoord - yRandom;                
-                Vector3 position = new(xCoord, yCoord, 0);
-                Instantiate(dirt, position, Quaternion.identity);
-                Instantiate(blueGem, position, Quaternion.identity);
-                hasTile[yRandom][xRandom] = true;
-                break;
-            }
-        }
+        }        
 
         //Place greenGem
         while (true)
@@ -146,6 +129,23 @@ public class GridCreatorScript : MonoBehaviour
                 Vector3 position = new(xCoord, yCoord, 0);
                 Instantiate(dirt, position, Quaternion.identity);
                 Instantiate(greenGem, position, Quaternion.identity);
+                hasTile[yRandom][xRandom] = true;
+                break;
+            }
+        }
+
+        //Place blueGem
+        while (true)
+        {
+            int xRandom = Random.Range(0, gridWidth);
+            int yRandom = Random.Range(1, gridHeight - 1);
+            if (!hasTile[yRandom][xRandom])
+            {
+                float xCoord = xStartCoord + xRandom;
+                float yCoord = yStartCoord - yRandom;
+                Vector3 position = new(xCoord, yCoord, 0);
+                Instantiate(dirt, position, Quaternion.identity);
+                Instantiate(blueGem, position, Quaternion.identity);
                 hasTile[yRandom][xRandom] = true;
                 break;
             }
