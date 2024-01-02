@@ -33,11 +33,11 @@ public class PlayerManager : MonoBehaviour
         }       
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("GrassTile"))
+        if (other.CompareTag("GrassTile") || other.CompareTag("DirtTile"))
         {
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
         }
     }
 }
