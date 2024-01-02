@@ -30,6 +30,14 @@ public class PlayerManager : MonoBehaviour
         {
             Vector2 movement = moveSpeed * Time.deltaTime * Vector2.down;
             rb.MovePosition(rb.position + movement);
+        }       
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("GrassTile"))
+        {
+            Destroy(collision.gameObject);
         }
     }
 }
