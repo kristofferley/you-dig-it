@@ -30,12 +30,32 @@ public class PlayerManager : MonoBehaviour
         {
             Vector2 movement = moveSpeed * Time.deltaTime * Vector2.down;
             rb.MovePosition(rb.position + movement);
-        }       
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("GrassTile") || other.CompareTag("DirtTile"))
+        {
+            Destroy(other.gameObject);
+        }
+        if (other.CompareTag("FuelTile"))
+        {
+            Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("GoldTile"))
+        {
+            Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("PurpleGemTile"))
+        {
+            Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("GreenGemTile"))
+        {
+            Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("BlueGemTile"))
         {
             Destroy(other.gameObject);
         }
