@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviour
     {        
         ScoreTrackerScript.latestScore = 0;
         GemTrackerScript.latestGems = 0;
-        FuelTrackerScript.latestFuel = 20;
+        FuelTrackerScript.latestFuel = 30;
     }
 
     void Update()
@@ -55,17 +55,22 @@ public class PlayerManager : MonoBehaviour
         if (other.CompareTag("FuelTile"))
         {
             Destroy(other.gameObject);
-            FuelTrackerScript.latestFuel += 20;
+            FuelTrackerScript.latestFuel += 10;
         }
         else if (other.CompareTag("GoldTile"))
         {
             Destroy(other.gameObject);
-            ScoreTrackerScript.latestScore += 100;
+            ScoreTrackerScript.latestScore += 200;
         }
         else if (other.CompareTag("PurpleGemTile"))
         {
             Destroy(other.gameObject);
             GemTrackerScript.latestGems += 1;
+            ScoreTrackerScript.latestScore -= 500;
+            if (GemTrackerScript.latestGems == 3)
+            {
+                ScoreTrackerScript.latestScore += 1000;
+            }
             SceneChanger sceneChanger = GetComponent<SceneChanger>();
             sceneChanger.ChangeScene("WinScreen");
         }
@@ -73,11 +78,15 @@ public class PlayerManager : MonoBehaviour
         {
             Destroy(other.gameObject);
             GemTrackerScript.latestGems += 1;
+            ScoreTrackerScript.latestScore -= 500;
+            FuelTrackerScript.latestFuel -= 5;
         }
         else if (other.CompareTag("BlueGemTile"))
         {
             Destroy(other.gameObject);
             GemTrackerScript.latestGems += 1;
+            ScoreTrackerScript.latestScore -= 500;
+            FuelTrackerScript.latestFuel -= 5;
         }
     }
 }

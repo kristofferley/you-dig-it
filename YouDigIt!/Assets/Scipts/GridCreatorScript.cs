@@ -74,6 +74,22 @@ public class GridCreatorScript : MonoBehaviour
             hasTile[gridHeight - 1][j] = true;
         }
 
+        //Place purpleGem
+        while (true)
+        {
+            int xRandom = Random.Range(1, gridWidth - 1);
+            if (!hasTile[gridHeight - 2][xRandom])
+            {
+                float yCoord = yStart - (gridHeight - 2);
+                float xCoord = xStart + xRandom;
+                Vector3 position = new(xCoord, yCoord, 0);
+                Instantiate(dirt, position, Quaternion.identity);
+                Instantiate(purpleGem, position, Quaternion.identity);
+                hasTile[gridHeight - 2][xRandom] = true;
+                break;
+            }
+        }
+        
         //Place stone
         while (numStones > 0)
         {
@@ -122,24 +138,7 @@ public class GridCreatorScript : MonoBehaviour
                 hasTile[yRandom][xRandom] = true;
                 numFuel--;
             }
-        }
-
-        //Place purpleGem
-        while (true)
-        {
-            int yRandom = Random.Range(2, gridHeight - 1);
-            int xRandom = Random.Range(1, gridWidth - 1);
-            if (!hasTile[yRandom][xRandom])
-            {
-                float yCoord = yStart - yRandom;
-                float xCoord = xStart + xRandom;
-                Vector3 position = new(xCoord, yCoord, 0);
-                Instantiate(dirt, position, Quaternion.identity);
-                Instantiate(purpleGem, position, Quaternion.identity);
-                hasTile[yRandom][xRandom] = true;
-                break;
-            }
-        }
+        }        
 
         //Place greenGem
         while (true)
