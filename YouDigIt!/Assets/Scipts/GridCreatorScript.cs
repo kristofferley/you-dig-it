@@ -10,7 +10,7 @@ public class GridCreatorScript : MonoBehaviour
     public GameObject unpassableBase;
     public GameObject fuel;
     public GameObject gold;
-    public GameObject purpleGem;    
+    public GameObject purpleGem;
     public GameObject greenGem;
     public GameObject blueGem;
 
@@ -69,13 +69,13 @@ public class GridCreatorScript : MonoBehaviour
         for (int j = 1; j < gridWidth - 1; j++)
         {
             float yCoord = yStart - 1;
-            float xCoord = xStart + j;            
+            float xCoord = xStart + j;
             Vector3 position = new(xCoord, yCoord, 0);
             Instantiate(unpassableBase, position, Quaternion.identity);
             Instantiate(grass, position, Quaternion.identity);
             hasTile[1][j] = true;
-        }              
-        
+        }
+
         //Place stone
         while (numStones > 0)
         {

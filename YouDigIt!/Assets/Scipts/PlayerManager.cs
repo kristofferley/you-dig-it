@@ -70,7 +70,7 @@ public class PlayerManager : MonoBehaviour
         if (other.CompareTag("FuelTile"))
         {
             Destroy(other.gameObject);
-            FuelTrackerScript.latestFuel += 8;
+            FuelTrackerScript.latestFuel += 9;
         }
         else if (other.CompareTag("GoldTile"))
         {
