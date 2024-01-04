@@ -55,24 +55,7 @@ public class PlayerManager : MonoBehaviour
             if (xDifference < 0.4f || yDifference < 0.45f)
             {
                 Destroy(other.gameObject);
-            } else
-            {
-                if (diggerCollider.bounds.center.y > other.bounds.center.y)
-                {
-                    transform.Translate(new Vector3(0, 0.01f, 0));
-                } else
-                {
-                    transform.Translate(new Vector3(0, -0.01f, 0));
-                }
-                if (diggerCollider.bounds.center.x > other.bounds.center.x)
-                {
-                    transform.Translate(new Vector3(0.01f, 0, 0));
-                }
-                else
-                {
-                    transform.Translate(new Vector3(-0.01f, 0, 0));
-                }
-            }
+            } 
         }
         if (other.CompareTag("GrassTile") || other.CompareTag("DirtTile"))
         {
@@ -87,7 +70,7 @@ public class PlayerManager : MonoBehaviour
         if (other.CompareTag("FuelTile"))
         {
             Destroy(other.gameObject);
-            FuelTrackerScript.latestFuel += 10;
+            FuelTrackerScript.latestFuel += 8;
         }
         else if (other.CompareTag("GoldTile"))
         {
