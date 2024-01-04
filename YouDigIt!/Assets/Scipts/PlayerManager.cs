@@ -38,10 +38,42 @@ public class PlayerManager : MonoBehaviour
             Vector2 movement = moveSpeed * Time.deltaTime * Vector2.down;
             rb.MovePosition(rb.position + movement);
         }
+        if (ScoreTrackerScript.latestScore == 4000)
+        {
+            SceneChanger sceneChanger = GetComponent<SceneChanger>();
+            sceneChanger.ChangeScene("WinScreen");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("UnpassableBaseTile")) 
+        {
+            Collider2D diggerCollider = GetComponent<Collider2D>();
+            float yDifference = Mathf.Abs(diggerCollider.bounds.center.y - other.bounds.center.y);
+            float xDifference = Mathf.Abs(diggerCollider.bounds.center.x - other.bounds.center.x);
+            if (xDifference < 0.4f || yDifference < 0.45f)
+            {
+                Destroy(other.gameObject);
+            } else
+            {
+                if (diggerCollider.bounds.center.y > other.bounds.center.y)
+                {
+                    transform.Translate(new Vector3(0, 0.01f, 0));
+                } else
+                {
+                    transform.Translate(new Vector3(0, -0.01f, 0));
+                }
+                if (diggerCollider.bounds.center.x > other.bounds.center.x)
+                {
+                    transform.Translate(new Vector3(0.01f, 0, 0));
+                }
+                else
+                {
+                    transform.Translate(new Vector3(-0.01f, 0, 0));
+                }
+            }
+        }
         if (other.CompareTag("GrassTile") || other.CompareTag("DirtTile"))
         {
             Destroy(other.gameObject);
@@ -69,24 +101,28 @@ public class PlayerManager : MonoBehaviour
             ScoreTrackerScript.latestScore -= 500;
             if (GemTrackerScript.latestGems == 3)
             {
-                ScoreTrackerScript.latestScore += 1000;
+                ScoreTrackerScript.latestScore += 2500;
             }
-            SceneChanger sceneChanger = GetComponent<SceneChanger>();
-            sceneChanger.ChangeScene("WinScreen");
         }
         else if (other.CompareTag("GreenGemTile"))
         {
             Destroy(other.gameObject);
             GemTrackerScript.latestGems += 1;
             ScoreTrackerScript.latestScore -= 500;
-            FuelTrackerScript.latestFuel -= 5;
+            if (GemTrackerScript.latestGems == 3)
+            {
+                ScoreTrackerScript.latestScore += 2500;
+            }
         }
         else if (other.CompareTag("BlueGemTile"))
         {
             Destroy(other.gameObject);
             GemTrackerScript.latestGems += 1;
             ScoreTrackerScript.latestScore -= 500;
-            FuelTrackerScript.latestFuel -= 5;
+            if (GemTrackerScript.latestGems == 3)
+            {
+                ScoreTrackerScript.latestScore += 2500;
+            }
         }
     }
 }

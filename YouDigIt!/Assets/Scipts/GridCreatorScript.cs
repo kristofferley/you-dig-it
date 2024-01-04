@@ -7,6 +7,7 @@ public class GridCreatorScript : MonoBehaviour
     public GameObject grass;
     public GameObject dirt;
     public GameObject stone;
+    public GameObject unpassableBase;
     public GameObject fuel;
     public GameObject gold;
     public GameObject purpleGem;    
@@ -54,16 +55,6 @@ public class GridCreatorScript : MonoBehaviour
             hasTile[i][gridWidth - 1] = true;
         }
 
-        //Place grass
-        for (int j = 1; j < gridWidth - 1; j++)
-        {
-            float yCoord = yStart - 1;
-            float xCoord = xStart + j;            
-            Vector3 position = new(xCoord, yCoord, 0);
-            Instantiate(grass, position, Quaternion.identity);
-            hasTile[1][j] = true;
-        }
-
         //Bottom stone border
         for (int j = 1; j < gridWidth - 1; j++)
         {
@@ -74,21 +65,16 @@ public class GridCreatorScript : MonoBehaviour
             hasTile[gridHeight - 1][j] = true;
         }
 
-        //Place purpleGem
-        while (true)
+        //Place grass
+        for (int j = 1; j < gridWidth - 1; j++)
         {
-            int xRandom = Random.Range(1, gridWidth - 1);
-            if (!hasTile[gridHeight - 2][xRandom])
-            {
-                float yCoord = yStart - (gridHeight - 2);
-                float xCoord = xStart + xRandom;
-                Vector3 position = new(xCoord, yCoord, 0);
-                Instantiate(dirt, position, Quaternion.identity);
-                Instantiate(purpleGem, position, Quaternion.identity);
-                hasTile[gridHeight - 2][xRandom] = true;
-                break;
-            }
-        }
+            float yCoord = yStart - 1;
+            float xCoord = xStart + j;            
+            Vector3 position = new(xCoord, yCoord, 0);
+            Instantiate(unpassableBase, position, Quaternion.identity);
+            Instantiate(grass, position, Quaternion.identity);
+            hasTile[1][j] = true;
+        }              
         
         //Place stone
         while (numStones > 0)
@@ -100,6 +86,7 @@ public class GridCreatorScript : MonoBehaviour
                 float yCoord = yStart - yRandom;
                 float xCoord = xStart + xRandom;
                 Vector3 position = new(xCoord, yCoord, 0);
+                Instantiate(unpassableBase, position, Quaternion.identity);
                 Instantiate(stone, position, Quaternion.identity);
                 hasTile[yRandom][xRandom] = true;
                 numStones--;
@@ -116,6 +103,7 @@ public class GridCreatorScript : MonoBehaviour
                 float yCoord = yStart - yRandom;
                 float xCoord = xStart + xRandom;
                 Vector3 position = new(xCoord, yCoord, 0);
+                Instantiate(unpassableBase, position, Quaternion.identity);
                 Instantiate(dirt, position, Quaternion.identity);
                 Instantiate(gold, position, Quaternion.identity);
                 hasTile[yRandom][xRandom] = true;
@@ -133,12 +121,31 @@ public class GridCreatorScript : MonoBehaviour
                 float yCoord = yStart - yRandom;
                 float xCoord = xStart + xRandom;
                 Vector3 position = new(xCoord, yCoord, 0);
+                Instantiate(unpassableBase, position, Quaternion.identity);
                 Instantiate(dirt, position, Quaternion.identity);
                 Instantiate(fuel, position, Quaternion.identity);
                 hasTile[yRandom][xRandom] = true;
                 numFuel--;
             }
-        }        
+        }
+
+        //Place purpleGem
+        while (true)
+        {
+            int yRandom = Random.Range(2, gridHeight - 1);
+            int xRandom = Random.Range(1, gridWidth - 1);
+            if (!hasTile[yRandom][xRandom])
+            {
+                float yCoord = yStart - yRandom;
+                float xCoord = xStart + xRandom;
+                Vector3 position = new(xCoord, yCoord, 0);
+                Instantiate(unpassableBase, position, Quaternion.identity);
+                Instantiate(dirt, position, Quaternion.identity);
+                Instantiate(purpleGem, position, Quaternion.identity);
+                hasTile[yRandom][xRandom] = true;
+                break;
+            }
+        }
 
         //Place greenGem
         while (true)
@@ -150,6 +157,7 @@ public class GridCreatorScript : MonoBehaviour
                 float yCoord = yStart - yRandom;
                 float xCoord = xStart + xRandom;
                 Vector3 position = new(xCoord, yCoord, 0);
+                Instantiate(unpassableBase, position, Quaternion.identity);
                 Instantiate(dirt, position, Quaternion.identity);
                 Instantiate(greenGem, position, Quaternion.identity);
                 hasTile[yRandom][xRandom] = true;
@@ -167,6 +175,7 @@ public class GridCreatorScript : MonoBehaviour
                 float yCoord = yStart - yRandom;
                 float xCoord = xStart + xRandom;
                 Vector3 position = new(xCoord, yCoord, 0);
+                Instantiate(unpassableBase, position, Quaternion.identity);
                 Instantiate(dirt, position, Quaternion.identity);
                 Instantiate(blueGem, position, Quaternion.identity);
                 hasTile[yRandom][xRandom] = true;
@@ -184,6 +193,7 @@ public class GridCreatorScript : MonoBehaviour
                     float yCoord = yStart - i;
                     float xCoord = xStart + j;
                     Vector3 position = new(xCoord, yCoord, 0);
+                    Instantiate(unpassableBase, position, Quaternion.identity);
                     Instantiate(dirt, position, Quaternion.identity);
                 }
             }

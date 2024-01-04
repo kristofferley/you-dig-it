@@ -12,6 +12,7 @@ TagManager:
   - GrassTile
   - DirtTile
   - StoneTile
+  - UnpassableBaseTile
   layers:
   - Default
   - TransparentFX
