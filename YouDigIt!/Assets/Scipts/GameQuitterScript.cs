@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameQuitterScript : MonoBehaviour
-{    
+{
     public void QuitGame()
     {
-        if (Application.isEditor)
-        {
+        #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-        }
-        else
-        {
+        #else
             Application.Quit();
-        }
+        #endif
     }
 }

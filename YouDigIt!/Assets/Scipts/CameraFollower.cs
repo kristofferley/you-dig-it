@@ -8,9 +8,9 @@ public class CameraFollower : MonoBehaviour
 
     void Update()
     {         
-        float verticalSpeed = target.GetComponent<Rigidbody2D>().velocity.y;            
+        float verticalSpeed = target.GetComponent<Rigidbody2D>().velocity.y;
         Vector3 newPosition = transform.position;
         newPosition.y = target.position.y + verticalSpeed * Time.deltaTime;            
-        transform.position = newPosition;        
+        transform.position = newPosition + new Vector3(0f, -0.3f, 0f);        
     }
 }
